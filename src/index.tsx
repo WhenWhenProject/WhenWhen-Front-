@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./pages/App";
 import GlobalStyle from "./styles/globalStyle";
 import { QueryClient, QueryClientProvider } from "react-query";
