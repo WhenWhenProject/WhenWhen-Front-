@@ -6,7 +6,7 @@ const Main = () => {
   const navigate = useNavigate();
   const getUser = useGetUser();
   useEffect(() => {
-    if (!getUser) navigate("/sign");
+    if (!getUser.login) navigate("/sign");
   });
   return <div>main</div>;
 };

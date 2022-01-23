@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Main from "./Main/Main";
-import Sign from "./Sign/Sign";
+import Main from "./main/Main";
+import Sign from "./sign/Sign";
+import OauthRedirect from "./OauthRedirect";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/sign" element={<Sign />} />
+          <Route path="/sign/kakao/callback" element={<OauthRedirect />} />
         </Routes>
       </StyledWrapper>
     </BrowserRouter>
