@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetUser } from "../../hooks/sign/useGetUser";
+import { kakaoAuth } from "../../modules/kakaoAuth/kakaoAuth";
 
 const Main = () => {
   const navigate = useNavigate();
-  const getUser = useGetUser();
-  useEffect(() => {
-    if (!getUser.login) navigate("/sign");
-  });
-  return <div>main</div>;
+
+  const handleClickLogout = async () => {
+    kakaoAuth.logout(() => {
+      navigate("/");
+      window.location.reload();
+    });
+  };
+
+  return <button onClick={handleClickLogout}>Logout</button>;
 };
 
 export default Main;

@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import envConfig from "../../modules/Envkey";
+import { API_KAKAO_REDIRECT } from "../../modules/api/keyFactory";
 
 const KakaoLoginBtn = () => {
-  const kakaoUri = `https://kauth.kakao.com/oauth/authorize?client_id=${envConfig.kakaoKey}&redirect_uri=${envConfig.kakaoRedirect}&response_type=code`;
   return (
     <StyledBtn>
-      <a href={kakaoUri}>
+      <a href={API_KAKAO_REDIRECT}>
         <img className="kakao-img" src="logo/kakao.png" alt="카카오 로그인" />
       </a>
     </StyledBtn>

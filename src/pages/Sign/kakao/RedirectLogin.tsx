@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { sessionLogin } from "../hooks/sign/useGetUser";
-import envConfig from "../modules/Envkey";
-
-const kakaoAuth = "https://kauth.kakao.com/oauth/token";
+import { setLogin } from "../../../hooks/sign/useGetUser";
+import { API_KAKAO_LOGIN } from "../../../modules/api/keyFactory";
+import envConfig from "../../../modules/Envkey";
+import { qs } from "../../../modules/util/qs";
 
 interface IbodyData {
   grant_type: string;
@@ -22,7 +22,7 @@ interface ItokenData {
   refresh_token_expires_in: number;
 }
 
-const OauthRedirect = () => {
+const RedirectLogin = () => {
   const navigate = useNavigate();
   const code = new URL(window.location.href)!.searchParams!.get(
     "code"
@@ -35,31 +35,28 @@ const OauthRedirect = () => {
     code,
   };
 
-  const queryStringBody = Object.keys(bodyData)
-    .map(
-      (query) => encodeURIComponent(query) + "=" + encodeURI(bodyData[query])
-    )
-    .join("&");
+  const queryStringBody = qs.stringURL(bodyData).substring(1);
+
+  const setToken = (data: ItokenData) => {
+    setLogin(data.access_token);
+  };
 
   const getKakaoToken = async () => {
     try {
-      const { data } = await axios.post(kakaoAuth, queryStringBody);
-      await setToken(data);
+      const { data } = await axios.post(API_KAKAO_LOGIN, queryStringBody);
+      setToken(data);
+      navigate("/");
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
   };
 
-  const setToken = async (data: ItokenData) => {
-    sessionLogin(data.access_token);
-    sessionStorage.setItem("refresh_token", data.refresh_token);
-    navigate("/");
-  };
-
   useEffect(() => {
     getKakaoToken();
   }, []);
+
   return <div>로딩중</div>;
 };
 
-export default OauthRedirect;
+export default RedirectLogin;

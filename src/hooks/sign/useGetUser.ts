@@ -1,10 +1,13 @@
+import { kakaoAuth } from "../../modules/kakaoAuth/kakaoAuth";
+
 export const useGetUser = () => {
-  const user = sessionStorage.getItem("user");
+  const token = kakaoAuth.getToken();
   return {
-    login: user ? true : false,
+    isLogin: token ? true : false,
+    token,
   };
 };
 
-export const sessionLogin = (token: string) => {
-  sessionStorage.setItem("user", token);
+export const setLogin = (token: string) => {
+  kakaoAuth.setToken(token);
 };

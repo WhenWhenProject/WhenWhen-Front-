@@ -3,16 +3,36 @@ import styled from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "./main/Main";
 import Sign from "./sign/Sign";
-import OauthRedirect from "./OauthRedirect";
+import RedirectLogin from "./sign/kakao/RedirectLogin";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../modules/store";
+import { useEffect } from "react";
+import { loginCheck } from "../modules/store/Login";
+import Test from "./Test";
+import { useGetUser } from "../hooks/sign/useGetUser";
 
 function App() {
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
+  const getTokenCheck = useGetUser();
+
+  useEffect(() => {
+    if (getTokenCheck.isLogin) {
+      dispatch(loginCheck());
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <StyledWrapper>
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/sign" element={<Sign />} />
-          <Route path="/sign/kakao/callback" element={<OauthRedirect />} />
+          {isLogin ? (
+            <Route path="/" element={<Main />} />
+          ) : (
+            <Route path="/" element={<Sign />} />
+          )}
+          <Route path="/test" element={<Test />} />
+          <Route path="/sign/kakao/callback" element={<RedirectLogin />} />
         </Routes>
       </StyledWrapper>
     </BrowserRouter>
