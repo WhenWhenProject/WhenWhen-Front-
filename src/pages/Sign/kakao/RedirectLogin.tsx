@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLogin } from "../../../hooks/sign/useGetUser";
 import { API_KAKAO_LOGIN } from "../../../modules/api/keyFactory";
 import envConfig from "../../../modules/Envkey";
+import { loginCheck } from "../../../modules/store/Login";
 import { qs } from "../../../modules/util/qs";
 
 interface IbodyData {
@@ -24,6 +26,7 @@ interface ItokenData {
 
 const RedirectLogin = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const code = new URL(window.location.href)!.searchParams!.get(
     "code"
   ) as string;
@@ -45,8 +48,8 @@ const RedirectLogin = () => {
     try {
       const { data } = await axios.post(API_KAKAO_LOGIN, queryStringBody);
       setToken(data);
+      dispatch(loginCheck());
       navigate("/");
-      window.location.reload();
     } catch (e) {
       console.log(e);
     }
