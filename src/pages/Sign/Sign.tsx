@@ -1,15 +1,20 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { sessionLogin, useGetUser } from "../../hooks/sign/useGetUser";
+import styled from "styled-components";
+import KakaoLoginBtn from "../../components/sign/KakaoLoginBtn";
 
 const Sign = () => {
-  const navigate = useNavigate();
-  const getUser = useGetUser();
-  const handleClickLogin = () => {
-    sessionLogin("login");
-    if (getUser) navigate("/");
-  };
-  return <button onClick={handleClickLogin}>kakao Login</button>;
+  return (
+    <StyledWrapper>
+      <KakaoLoginBtn></KakaoLoginBtn>
+    </StyledWrapper>
+  );
 };
+
+const StyledWrapper = styled.div`
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default Sign;
