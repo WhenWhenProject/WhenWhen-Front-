@@ -1,15 +1,16 @@
-import React from "react";
-import styled from "styled-components";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Main from "./main/Main";
-import Sign from "./sign/Sign";
-import RedirectLogin from "./sign/kakao/RedirectLogin";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../modules/store";
-import { useEffect } from "react";
-import { loginCheck } from "../modules/store/Login";
-import Test from "./Test";
-import { useGetUser } from "../hooks/sign/useGetUser";
+import React from 'react';
+import styled from 'styled-components';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Main from './Main/Main';
+import Sign from './Sign/Sign';
+import KakaoRedirectLogin from './Sign/kakao/KakaoRedirectLogin';
+import GoogleRedirectLogin from './Sign/Google/GoogleRedirectLogin';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../modules/store';
+import { useEffect } from 'react';
+import { loginCheck } from '../modules/store/Login';
+import Test from './Test';
+import { useGetUser } from '../hooks/sign/useGetUser';
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,11 @@ function App() {
             <Route path="/" element={<Sign />} />
           )}
           <Route path="/test" element={<Test />} />
-          <Route path="/sign/kakao/callback" element={<RedirectLogin />} />
+          <Route path="/sign/kakao/callback" element={<KakaoRedirectLogin />} />
+          <Route
+            path="/sign/google/callback"
+            element={<GoogleRedirectLogin />}
+          />
         </Routes>
       </StyledWrapper>
     </BrowserRouter>

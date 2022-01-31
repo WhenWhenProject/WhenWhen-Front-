@@ -1,11 +1,15 @@
-import styled from "styled-components";
-import KakaoLoginBtn from "../../components/sign/KakaoLoginBtn";
+import styled from 'styled-components';
+import KakaoLoginBtn from '../../components/sign/KakaoLoginBtn';
+import GoogleLoginBtn from '../../components/sign/GoogleLoginBtn';
 
 const Sign = () => {
   return (
-    <StyledWrapper>
-      <KakaoLoginBtn></KakaoLoginBtn>
-    </StyledWrapper>
+    <div>
+      <StyledWrapper>
+        <KakaoLoginBtn></KakaoLoginBtn>
+        <GoogleLoginBtn></GoogleLoginBtn>
+      </StyledWrapper>
+    </div>
   );
 };
 
