@@ -1,12 +1,12 @@
-import axios from "axios";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setLogin } from "../../../hooks/sign/useGetUser";
-import { API_KAKAO_LOGIN } from "../../../modules/api/keyFactory";
-import envConfig from "../../../modules/Envkey";
-import { loginCheck } from "../../../modules/store/Login";
-import { qs } from "../../../modules/util/qs";
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setLogin } from '../../../hooks/sign/useGetUser';
+import { API_KAKAO_LOGIN } from '../../../modules/api/keyFactory';
+import envConfig from '../../../modules/Envkey';
+import { loginCheck } from '../../../modules/store/Login';
+import { qs } from '../../../modules/util/qs';
 
 interface IbodyData {
   grant_type: string;
@@ -28,11 +28,11 @@ const RedirectLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const code = new URL(window.location.href)!.searchParams!.get(
-    "code"
+    'code'
   ) as string;
 
   const bodyData: IbodyData = {
-    grant_type: "authorization_code",
+    grant_type: 'authorization_code',
     client_id: envConfig!.kakaoKey,
     redirect_uri: envConfig!.kakaoRedirect,
     code,
@@ -40,16 +40,12 @@ const RedirectLogin = () => {
 
   const queryStringBody = qs.stringURL(bodyData).substring(1);
 
-  const setToken = (data: ItokenData) => {
-    setLogin(data.access_token);
-  };
-
   const getKakaoToken = async () => {
     try {
       const { data } = await axios.post(API_KAKAO_LOGIN, queryStringBody);
-      setToken(data);
+      setLogin(data.access_token, 'kakao');
       dispatch(loginCheck());
-      navigate("/");
+      navigate('/');
     } catch (e) {
       console.log(e);
     }

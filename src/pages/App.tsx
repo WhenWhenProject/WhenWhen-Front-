@@ -15,10 +15,11 @@ import { useGetUser } from '../hooks/sign/useGetUser';
 function App() {
   const dispatch = useDispatch();
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
-  const getTokenCheck = useGetUser();
+  const token = localStorage.getItem('access-token');
+  const getUser = useGetUser(token);
 
   useEffect(() => {
-    if (getTokenCheck.isLogin) {
+    if (!getUser.isLogin) {
       dispatch(loginCheck());
     }
   }, []);
