@@ -10,21 +10,19 @@ export default function GoogleRedirectLogin(res: any) {
   const dispatch = useDispatch();
   const params = new URLSearchParams(window.location.hash)!;
   const access_token = params.get('#access_token') as string;
-  console.log(access_token);
 
   localStorage.setItem('oauth2-google-params', JSON.stringify(access_token));
 
   const googleRequest = async () => {
-    var access_token = JSON.parse(
+    const google_access_token = JSON.parse(
       localStorage.getItem('oauth2-google-params') as string
     );
     try {
       const response = await axios.get(API_GOOGLE_REDIRECT_LOGIN, {
         headers: {
-          Authorization: `Bearer ${access_token}`,
+          Authorization: `Bearer ${google_access_token}`,
         },
       });
-      console.log(response);
       dispatch(loginCheck());
       navigate('/');
     } catch (error) {
@@ -36,5 +34,5 @@ export default function GoogleRedirectLogin(res: any) {
     googleRequest();
   }, []);
 
-  return <div>Hello</div>;
+  return <div>Google Redirect</div>;
 }

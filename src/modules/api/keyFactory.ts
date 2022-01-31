@@ -10,4 +10,4 @@ response_type=token&
 redirect_uri=${envConfig.googleRedirect}&
 client_id=${envConfig.googleKey}`;
 export const API_GOOGLE_REDIRECT_LOGIN =
-  'https://www.googleapis.com/drive/v2/files';
+  'https://www.googleapis.com/drive/v2/about';
