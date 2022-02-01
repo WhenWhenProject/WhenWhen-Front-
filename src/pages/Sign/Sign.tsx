@@ -1,11 +1,20 @@
-import styled from "styled-components";
-import KakaoLoginBtn from "../../components/sign/KakaoLoginBtn";
+import styled from 'styled-components';
+import KakaoLoginBtn from '../../components/sign/KakaoLoginBtn';
+import GoogleLoginBtn from '../../components/sign/GoogleLoginBtn';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../modules/store';
 
 const Sign = () => {
+  // const isLogin = useSelector((state: RootState) => state.login.isLogin);
+  // console.log(isLogin);
+
   return (
-    <StyledWrapper>
-      <KakaoLoginBtn></KakaoLoginBtn>
-    </StyledWrapper>
+    <div>
+      <StyledWrapper>
+        <KakaoLoginBtn></KakaoLoginBtn>
+        <GoogleLoginBtn></GoogleLoginBtn>
+      </StyledWrapper>
+    </div>
   );
 };
 
