@@ -2,16 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import handleLogin from "../../modules/api/handleLogin";
 
-const GoogleLoginBtn = () => {
+const NaverLoginBtn = () => {
   return (
-    <StyledBtn onClick={() => handleLogin("google")}>구글 로그인</StyledBtn>
+    <StyledBtn onClick={() => handleLogin("naver")}>네이버로 로그인</StyledBtn>
   );
 };
 
-export default GoogleLoginBtn;
+export default NaverLoginBtn;
 
 const StyledBtn = styled.button`
   width: 200px;
   cursor: pointer;
-  margin-bottom: 10px;
 `;

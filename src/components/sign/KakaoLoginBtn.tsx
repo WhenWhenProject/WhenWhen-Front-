@@ -1,26 +1,19 @@
+import axios from "axios";
+import React from "react";
 import styled from "styled-components";
-import { API_KAKAO_REDIRECT } from "../../modules/api/keyFactory";
+import handleLogin from "../../modules/api/handleLogin";
+import { API_KAKAO_LOGIN } from "../../modules/api/keyFactory";
 
 const KakaoLoginBtn = () => {
   return (
-    <StyledBtn>
-      <a href={API_KAKAO_REDIRECT}>
-        <img className="kakao-img" src="logo/kakao.png" alt="카카오 로그인" />
-      </a>
-    </StyledBtn>
+    <StyledBtn onClick={() => handleLogin("kakao")}>카카오로 로그인</StyledBtn>
   );
 };
 
-const StyledBtn = styled.button`
-  border-radius: 12px;
-  border: none;
-  padding: 0;
-  :hover {
-    cursor: pointer;
-  }
-  a {
-    display: flex;
-  }
-`;
-
 export default KakaoLoginBtn;
+
+const StyledBtn = styled.button`
+  width: 200px;
+  cursor: pointer;
+  margin-bottom: 10px;
+`;
