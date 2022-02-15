@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "./Main/Main";
-import Sign from "./Sign/Sign";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../modules/store";
 import { useEffect } from "react";
@@ -13,6 +12,7 @@ import MyPage from "./MyPage/MyPage";
 import ScheduleForm from "./ScheduleForm/ScheduleForm";
 import Page404 from "./Page404";
 import ScheduleResult from "./ScheduleResult/ScheduleResult";
+import NavigationBar from "../components/NavigationBar";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ function App() {
   return (
     <BrowserRouter>
       <StyledWrapper>
-        <div>헤더</div>
+        <NavigationBar />
         <Routes>
           <Route path="/" element={<Main />} />
           {!isLogin && (
