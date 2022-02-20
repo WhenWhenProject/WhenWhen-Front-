@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import ProfileBtn from "./ProfileBtn";
+import React from 'react';
+import styled from 'styled-components';
+import ProfileBtn from './ProfileBtn';
 
 const NavigationBar = () => {
   const todayDate = () => {
     const today = new Date();
-    const month = ("0" + (today.getMonth() + 1)).slice(-2);
-    const day = ("0" + today.getDate()).slice(-2);
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const day = ('0' + today.getDate()).slice(-2);
     return `${month}월 ${day}일`;
   };
   return (
@@ -14,7 +14,7 @@ const NavigationBar = () => {
       <div className="logo-box">
         <div className="logo-box-head" />
         <img
-          style={{ width: "48px", height: "60px" }}
+          style={{ width: '48px', height: '60px' }}
           src="/img/whenwhen.png"
           alt="logo"
         ></img>
@@ -29,6 +29,8 @@ const NavigationBar = () => {
 export default NavigationBar;
 
 const StyledWrapper = styled.div`
+  position: sticky;
+  top: 0;
   color: #000070;
   display: flex;
   justify-content: space-between;
