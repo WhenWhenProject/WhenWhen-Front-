@@ -1,24 +1,22 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./pages/App";
-import GlobalStyle from "./styles/globalStyle";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Provider } from "react-redux";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { createStore } from "redux";
-import rootReducer from "./modules/store";
-import { composeWithDevTools } from "redux-devtools-extension";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './pages/App';
+import GlobalStyle from './styles/globalStyle';
+import { ThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './modules/store';
+import theme from './styles/theme';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const queryClient = new QueryClient();
 const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
-  <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
       <GlobalStyle />
       <App />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  </Provider>,
-  document.getElementById("root")
+    </Provider>
+  </ThemeProvider>,
+  document.getElementById('root')
 );
