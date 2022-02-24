@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import PageTitleBar from '../../components/PageTitleBar';
 import InputBlock from '../../components/newSchedule/InputBlock';
 import {
   pencil,
@@ -40,10 +41,7 @@ const NewSchedule = () => {
 
   return (
     <StyledWrapper>
-      <div className="title-container">
-        <img className="title-image" src={title_calendar} alt="" />
-        <h1>일정 생성</h1>
-      </div>
+      <PageTitleBar title="일정 생성" />
       <div className="form-container">
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
