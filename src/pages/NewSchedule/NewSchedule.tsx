@@ -127,20 +127,6 @@ const centerAlign = css`
 const StyledWrapper = styled.div`
   ${centerAlign};
   flex-direction: column;
-  .title-container {
-    width: 100%;
-    height: 10vh;
-    ${centerAlign};
-    .title-image {
-      width: 50px;
-      margin-right: 5px;
-    }
-    h1 {
-      color: #000070;
-      font-weight: normal;
-      margin-left: 5px;
-    }
-  }
   .form-container {
     margin-top: 3vh;
     width: 500px;

@@ -35,6 +35,7 @@ const StyledWrapper = styled.div`
   .title-container {
     width: 500px;
     height: 100%;
+    ${centerAlign}
     .title-image {
       width: 50px;
       margin-right: 5px;
