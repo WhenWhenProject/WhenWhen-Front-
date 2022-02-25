@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import PageTitleBar from '../../components/PageTitleBar';
@@ -6,15 +5,11 @@ import InputBlock from '../../components/newSchedule/InputBlock';
 import {
   pencil,
   people_plus,
-  gray_check,
-  green_check,
   clock,
   date_calendar,
   location_pin,
   time_clock,
-  title_calendar,
 } from '../../assets/NewSchedule/index';
-import { register } from 'ts-node';
 
 type InputData = {
   name: string;

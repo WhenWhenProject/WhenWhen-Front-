@@ -16,15 +16,6 @@ const arrowAnimation = keyframes`
   }
 `;
 
-const imageAnimation = keyframes`
-  0%{
-    opacity: 1;
-  }
-  100%{
-    opacity: 0;
-  }
-`;
-
 const LandingComponent = () => {
   const login = useGetUser('login');
   const handleSchedule = () => {
