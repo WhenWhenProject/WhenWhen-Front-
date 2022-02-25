@@ -14,6 +14,7 @@ import Page404 from './Page404';
 import ScheduleResult from './ScheduleResult/ScheduleResult';
 import NavigationBar from '../components/NavigationBar';
 import EventPage from './Event/EventPage';
+import EventComponent from '../components/event/EventComponent';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +40,9 @@ function App() {
               <Route path="mypage" element={<MyPage />} />
               <Route path="schedule/form" element={<ScheduleForm />} />
               <Route path="schedule/result" element={<ScheduleResult />} />
-              <Route path="event" element={<EventPage />} />
+              <Route path="event" element={<EventPage />}>
+                <Route path=":type" element={<EventComponent />}></Route>
+              </Route>
             </>
           )}
           <Route path="*" element={<Page404 />} />
