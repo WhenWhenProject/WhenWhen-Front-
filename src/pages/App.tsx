@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './Main/Main';
+import Sign from './Sign/Sign';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules/store';
 import { useEffect } from 'react';
