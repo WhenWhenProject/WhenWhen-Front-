@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation, useNavigate, useRoutes } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { useGetUser } from '../../hooks/sign/useGetUser';
 import LoginGroup from '../sign/LoginGroup';
@@ -17,9 +18,10 @@ const arrowAnimation = keyframes`
 `;
 
 const LandingComponent = () => {
+  const navigate = useNavigate();
   const login = useGetUser('login');
   const handleSchedule = () => {
-    console.log('일정 생성하기');
+    navigate('/schedule/new');
   };
   return (
     <StyledWrapper>
