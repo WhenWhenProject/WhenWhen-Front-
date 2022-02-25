@@ -7,9 +7,7 @@ type TitleProps = {
 };
 
 // 어떤 페이지인지 알려주는 타이틀 바
-const PageTitleBar = (props: TitleProps) => {
-  const { title } = props;
-
+const PageTitleBar = ({ title }: TitleProps) => {
   return (
     <StyledWrapper>
       <div className="title-container">
