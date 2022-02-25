@@ -29,7 +29,7 @@ function App() {
   return (
     <BrowserRouter>
       <StyledWrapper>
-        <div>헤더</div>
+        <NavigationBar />
         <Routes>
           <Route path="/" element={<Main />} />
           {!isLogin && (
