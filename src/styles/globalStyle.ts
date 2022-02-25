@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
     ${normalize}
 
   * {
+    overflow-y: hidden;
     box-sizing: border-box;
   }
   

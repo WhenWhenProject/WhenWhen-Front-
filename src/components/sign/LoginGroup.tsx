@@ -17,6 +17,8 @@ const LoginGroup = () => {
 export default LoginGroup;
 
 const StyledWrapper = styled.div`
+  position: absolute;
+  bottom: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;

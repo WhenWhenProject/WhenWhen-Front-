@@ -47,8 +47,6 @@ function App() {
   );
 }
 
-const StyledWrapper = styled.div`
-  height: 2000px;
-`;
-
 export default App;
+
+const StyledWrapper = styled.div``;

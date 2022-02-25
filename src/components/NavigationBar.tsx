@@ -29,8 +29,11 @@ const NavigationBar = () => {
 export default NavigationBar;
 
 const StyledWrapper = styled.div`
-  position: sticky;
+  z-index: 10;
+  width: 100%;
+  position: fixed;
   top: 0;
+  background-color: white;
   color: #000070;
   display: flex;
   justify-content: space-between;
