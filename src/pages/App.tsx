@@ -34,10 +34,10 @@ function App() {
           <Route path="/" element={<Main />} />
           {!isLogin && (
             <>
-              <Route path="new-schedule" element={<NewSchedule />} />
+              <Route path="schedule/new" element={<NewSchedule />} />
               <Route path="mypage" element={<MyPage />} />
-              <Route path="schedule-form" element={<ScheduleForm />} />
-              <Route path="schedule-result" element={<ScheduleResult />} />
+              <Route path="schedule/form" element={<ScheduleForm />} />
+              <Route path="schedule/result" element={<ScheduleResult />} />
             </>
           )}
           <Route path="*" element={<Page404 />} />
