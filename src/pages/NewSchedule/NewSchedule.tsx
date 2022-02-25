@@ -122,6 +122,7 @@ const centerAlign = css`
 const StyledWrapper = styled.div`
   ${centerAlign};
   flex-direction: column;
+  margin-top: 80px;
   .form-container {
     margin-top: 3vh;
     width: 500px;
