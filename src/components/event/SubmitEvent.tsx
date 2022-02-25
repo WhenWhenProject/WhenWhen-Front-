@@ -23,7 +23,6 @@ const SubmitEvent = ({ type }: { type: string }) => {
 export default SubmitEvent;
 
 const StyledWrapper = styled.div`
-  z-index: 6;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -15,6 +15,7 @@ const EventPage = () => {
 export default EventPage;
 
 const StyledWrapper = styled.div`
+  width: 100%;
   position: relative;
   height: 100vh;
   display: flex;

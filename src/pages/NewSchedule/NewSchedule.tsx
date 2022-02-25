@@ -26,7 +26,7 @@ const peopleList = ['1명', '2명', '3명', '4명'];
 // 새로운 일정을 생성하는 페이지
 const NewSchedule = () => {
   const methods = useForm<InputData>();
-  const { watch, handleSubmit } = methods;
+  const { handleSubmit } = methods;
 
   // console.log(watch('name'));
 
@@ -120,6 +120,7 @@ const centerAlign = css`
 `;
 
 const StyledWrapper = styled.div`
+  width: 67%;
   ${centerAlign};
   flex-direction: column;
   margin-top: 80px;

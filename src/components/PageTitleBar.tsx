@@ -30,8 +30,8 @@ const StyledWrapper = styled.div`
   width: 100%;
   height: 10vh;
   ${centerAlign};
+  justify-content: flex-start;
   .title-container {
-    width: 500px;
     height: 100%;
     ${centerAlign}
     .title-image {

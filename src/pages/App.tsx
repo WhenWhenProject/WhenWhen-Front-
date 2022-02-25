@@ -15,6 +15,7 @@ import ScheduleResult from './ScheduleResult/ScheduleResult';
 import NavigationBar from '../components/NavigationBar';
 import EventPage from './Event/EventPage';
 import EventComponent from '../components/event/EventComponent';
+import PreResult from './PreResult/PreResult';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function App() {
               <Route path="mypage" element={<MyPage />} />
               <Route path="schedule/form" element={<ScheduleForm />} />
               <Route path="schedule/result" element={<ScheduleResult />} />
+              <Route path="schedule/pre" element={<PreResult />} />
               <Route path="event" element={<EventPage />}>
                 <Route path=":type" element={<EventComponent />}></Route>
               </Route>
@@ -54,4 +56,7 @@ function App() {
 
 export default App;
 
-const StyledWrapper = styled.div``;
+const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
