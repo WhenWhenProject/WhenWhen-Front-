@@ -7,7 +7,9 @@ const ResultPeople = () => {
   return (
     <StyledWrapper>
       {people.map((person) => (
-        <div className="people-container">{person}</div>
+        <div key={person} className="people-container">
+          {person}
+        </div>
       ))}
     </StyledWrapper>
   );

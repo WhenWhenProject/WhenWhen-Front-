@@ -15,12 +15,10 @@ const sample = timeArr.map((time) => {
 
 const SwiperDateBlock = () => {
   const [num, setNum] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const swiperRef = useRef<HTMLDivElement>(null);
+  const isMouseDown = useRef<boolean>(false);
 
-  const handleWheel = () => {
-    console.log('wheel');
-  };
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const swiperTimeRef = useRef<HTMLDivElement>(null);
 
   const handleClickRight = (event: React.MouseEvent<HTMLImageElement>) => {
     if (num <= -dateSwiperMax * visibleSwiper * tranlatePixel) return;
@@ -41,15 +39,15 @@ const SwiperDateBlock = () => {
   }, [num]);
 
   useEffect(() => {
-    const swiperRefCurrent = swiperRef.current;
-    swiperRefCurrent?.addEventListener('wheel', handleWheel);
-    return () => {
-      swiperRefCurrent?.removeEventListener('wheel', handleWheel);
-    };
+    const swiperTimeRefCurrent = swiperTimeRef.current;
+    swiperTimeRefCurrent?.addEventListener('mousedown', () => {
+      isMouseDown.current = true;
+      console.log('mouseDown');
+    });
   }, []);
 
   return (
-    <StyledWrapper ref={swiperRef}>
+    <StyledWrapper ref={swiperTimeRef}>
       <div className="img-box">
         {num < dateSwiperMax * visibleSwiper * tranlatePixel && (
           <img
