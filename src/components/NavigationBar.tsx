@@ -1,13 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ProfileBtn from './ProfileBtn';
 
 const NavigationBar = () => {
+  const navigate = useNavigate();
   const todayDate = () => {
     const today = new Date();
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
     const day = ('0' + today.getDate()).slice(-2);
     return `${month}월 ${day}일`;
+  };
+
+  const handleClick = () => {
+    navigate('/');
   };
   return (
     <StyledWrapper>
@@ -17,8 +23,11 @@ const NavigationBar = () => {
           style={{ width: '48px', height: '60px' }}
           src="/img/whenwhen.png"
           alt="logo"
+          onClick={handleClick}
         ></img>
-        <div>whenwhen</div>
+        <div className="logo-box__title" onClick={handleClick}>
+          whenwhen
+        </div>
       </div>
       <div className="date-box">{todayDate()}</div>
       <ProfileBtn />
@@ -54,6 +63,10 @@ const StyledWrapper = styled.div`
     }
     img {
       margin-right: 16px;
+    }
+    img,
+    .logo-box__title {
+      cursor: pointer;
     }
   }
   .date-box {

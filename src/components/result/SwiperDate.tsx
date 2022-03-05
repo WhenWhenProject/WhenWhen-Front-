@@ -17,7 +17,7 @@ const SwiperDate = ({ date, type, status }: SwiperProps) => {
     }
   };
   return (
-    <StyledWrapper type={type}>
+    <StyledWrapper type={type} status={status}>
       <div onClick={handleClick}>{date}</div>
     </StyledWrapper>
   );
@@ -25,8 +25,9 @@ const SwiperDate = ({ date, type, status }: SwiperProps) => {
 
 export default SwiperDate;
 
-const StyledWrapper = styled.div<{ type: string }>`
-  ${({ type }) => css`
+const StyledWrapper = styled.div<{ type: string; status: string }>`
+  ${({ type, status }) => css`
+    cursor: ${status === 'select' ? 'pointer' : 'default'};
     display: flex;
     margin-top: 10px;
     border-radius: 6px;

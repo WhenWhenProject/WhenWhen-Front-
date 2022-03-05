@@ -158,7 +158,7 @@ const SwiperBlock = ({ status }: { status: SelectStatus }) => {
           {sampleDay.map((day) => (
             <div key={day.date} className="swiper-block">
               <div className="swiper-day-block">{day.day}</div>
-              <SwiperDate date={day.date} type={day.checked} status="select" />
+              <SwiperDate date={day.date} type={day.checked} status={status} />
               {status === 'select' ? (
                 <div
                   className="check-container"

@@ -1,13 +1,19 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 const ProfileBtn = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/mypage');
+  };
   return (
     <StyledWrapper>
       <img
-        style={{ width: "48px", height: "48px" }}
+        style={{ width: '48px', height: '48px' }}
         src="/img/avatar.png"
         alt="avatar"
+        onClick={handleClick}
       />
       <div className="header-tail" />
     </StyledWrapper>
@@ -21,6 +27,9 @@ const StyledWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  img {
+    cursor: pointer;
+  }
   .header-tail {
     height: 100%;
     width: 32px;

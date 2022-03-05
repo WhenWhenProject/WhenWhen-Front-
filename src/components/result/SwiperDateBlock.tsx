@@ -49,10 +49,13 @@ const SwiperDateBlock = ({ status }: { status: SelectStatus }) => {
   }, []);
 
   return (
-    <StyledWrapper ref={swiperTimeRef}>
-      <div className="join-button-container">
-        <button>모두 참여 불가</button>
-        <button>모두 참여 가능</button>
+    <StyledWrapper ref={swiperTimeRef} status={status}>
+      <div
+        className="join-button-container"
+        style={status === 'result' ? { display: 'none' } : undefined}
+      >
+        <button className="button__all-absent">모두 참여 불가</button>
+        <button className="button__all-join">모두 참여 가능</button>
       </div>
 
       <div className="select-container">
@@ -71,7 +74,7 @@ const SwiperDateBlock = ({ status }: { status: SelectStatus }) => {
             {sample.map((day) => (
               <div key={day.time} className="swiper-block">
                 <div className="swiper-date-block">{day.time}</div>
-                <SwiperDate type={day.checked} status="result" />
+                <SwiperDate type={day.checked} status={status} />
               </div>
             ))}
           </div>
@@ -88,7 +91,10 @@ const SwiperDateBlock = ({ status }: { status: SelectStatus }) => {
         </div>
       </div>
 
-      <div className="next-button-container">
+      <div
+        className="next-button-container"
+        style={status === 'result' ? { display: 'none' } : undefined}
+      >
         <button>다음</button>
       </div>
     </StyledWrapper>
@@ -103,12 +109,27 @@ const centerAlign = css`
   align-items: center;
 `;
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.div<{ status: string }>`
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(112,112,112,0.26);
   .join-button-container {
     ${centerAlign}
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      width: 200px;
+      height: 50px;
+      margin: 15px;
+      color: white;
+    }
+    .button__all-absent {
+        background-color: #707070;
+    }
+    .button__all-join {
+        background-color: #000070;
+    }
   }
   .select-container {
     position: relative;
@@ -164,8 +185,17 @@ const StyledWrapper = styled.div`
   }
   }
   .next-button-container {
-    height: 
     ${centerAlign};
+    button {
+      cursor: pointer;
+      width: 150px;
+      height: 40px;
+      background-color: #000070;
+      border: none;
+      color: white;
+      border-radius: 50px;
+      margin-bottom: 15px;
+    }
   }
   
   

@@ -143,6 +143,7 @@ const StyledWrapper = styled.div`
       justify-content: space-evenly;
       align-items: center;
       button {
+        cursor: pointer;
         width: 40%;
         height: 50%;
         border: none;

@@ -45,4 +45,36 @@ const StyledWrapper = styled.div`
   ${centerAlign}
   flex-direction: column;
   margin-bottom: 62px;
+  .container {
+    color: #000070;
+    width: 100%;
+    margin-bottom: 48px;
+    .title {
+      font-size: 32px;
+      margin-bottom: 0;
+    }
+  }
+  .btn-container {
+    button {
+      cursor: pointer;
+      width: 282px;
+      height: 80px;
+      font-size: 24px;
+      color: white;
+      border: none;
+      border-radius: 10px;
+    }
+    .btn-container__button--cancel {
+      background-color: #7d7d7d;
+      margin-right: 24px;
+    }
+    .btn-container__button--submit {
+      background-color: #000070;
+    }
+  }
+  .container_line {
+    border: 4px solid #000070;
+    margin-bottom: 24px;
+    max-width: 1200px;
+  }
 `;
