@@ -1,8 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import ResultBlock from '../ResultBlock';
-import SwiperBlock from '../SwiperBlock';
-import SwiperDateBlock from '../SwiperDateBlock';
 import {
   pencil,
   people_plus,

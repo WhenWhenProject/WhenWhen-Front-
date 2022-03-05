@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import SwiperDate from './SwiperDate';
+import { gray_check, green_check } from '../../assets/NewSchedule/index';
 
 const visibleSwiper = 3;
 const translatePixel = 116;
@@ -29,7 +30,9 @@ const sampleDay = [
   { day: '수', date: '1/28', checked: 'false' },
 ];
 
-const SwiperBlock = () => {
+type SelectType = 'select' | 'result';
+
+const SwiperBlock = ({ type }: { type: SelectType }) => {
   const [num, setNum] = useState(0);
   const count = useRef<number>(0);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -156,6 +159,11 @@ const SwiperBlock = () => {
             <div key={day.date} className="swiper-block">
               <div className="swiper-day-block">{day.day}</div>
               <SwiperDate date={day.date} type={day.checked} />
+              {type === 'select' ? (
+                <div className="check-container">
+                  <img src={gray_check} alt="not-checked" />
+                </div>
+              ) : null}
             </div>
           ))}
         </div>
@@ -176,14 +184,18 @@ const SwiperBlock = () => {
 
 export default SwiperBlock;
 
+const centerAlign = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const StyledWrapper = styled.div`
   position: relative;
   border: 1px solid rgba(112,112,112,0.26);
   max-width: 1200px;
   padding: 24px 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${centerAlign};
   .swiper-container {
     max-width: 812px;
     overflow: hidden;
@@ -193,19 +205,22 @@ const StyledWrapper = styled.div`
       min-width: auto;
       transition: transform 0.3s;
       .swiper-block {
+        width: 96px;
+        margin: 0px 10px;
         .swiper-day-block {
           border: 1px solid #707070;
-          width: 96px;
+          width: 100%;
           height: 40px;
           background-color: #ffffff;
           border-radius: 5px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          ${centerAlign}
           color: #000070;
           font-size: 24px;
           margin-right: 20px;
         }
+        .check-container {
+            ${centerAlign};
+          }
       }
     }
   }

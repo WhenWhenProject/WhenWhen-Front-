@@ -14,7 +14,7 @@ const PreResult = () => {
       <div className="day container">
         <p className="title">요일</p>
         <div className="container_line" />
-        <SwiperBlock />
+        <SwiperBlock type="result" />
       </div>
       <div className="time container">
         <p className="time title">시간</p>
@@ -27,8 +27,10 @@ const PreResult = () => {
         <ResultPeople />
       </div>
       <div className="btn-container">
-        <button className="btn-left">내 일정 수정하기</button>
-        <button className="btn-right">공유하기</button>
+        <button className="btn-container__button--modify">
+          내 일정 수정하기
+        </button>
+        <button className="btn-container__button--share">공유하기</button>
       </div>
     </StyledWrapper>
   );
@@ -49,13 +51,6 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   margin-bottom: 62px;
 
-  .result-container {
-    width: 588px;
-    margin-top: 3vh;
-    ${centerAlign}
-    flex-direction: column;
-    margin-bottom: 32px;
-  }
   .container {
     color: #000070;
     width: 100%;
@@ -78,11 +73,11 @@ const StyledWrapper = styled.div`
       border: none;
       border-radius: 10px;
     }
-    .btn-left {
+    .btn-container__button--modify {
       background-color: #7d7d7d;
       margin-right: 24px;
     }
-    .btn-right {
+    .btn-container__button--share {
       background-color: #000070;
     }
   }

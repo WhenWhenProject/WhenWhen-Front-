@@ -2,9 +2,12 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const SwiperDate = ({ date, type }: { date?: string; type: string }) => {
+  const handleClick = () => {
+    console.log('hi');
+  };
   return (
     <StyledWrapper type={type}>
-      <div>{date}</div>
+      <div onClick={handleClick}>{date}</div>
     </StyledWrapper>
   );
 };
