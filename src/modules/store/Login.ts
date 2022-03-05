@@ -1,5 +1,5 @@
-const LOGINCHECK = "logincheck";
-const LOGOUTCHECK = "logoutcheck";
+const LOGINCHECK = 'logincheck';
+const LOGOUTCHECK = 'logoutcheck';
 
 export const loginCheck = () => ({ type: LOGINCHECK });
 export const logoutCheck = () => ({ type: LOGOUTCHECK });

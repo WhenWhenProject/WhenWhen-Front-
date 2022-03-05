@@ -15,12 +15,12 @@ const ScheduleForm = () => {
       <div className="day container">
         <p className="title">요일</p>
         <div className="container_line" />
-        <SwiperBlock type="select" />
+        <SwiperBlock status="select" />
       </div>
       <div className="time container">
         <p className="time title">시간</p>
         <div className="container_line" />
-        <SwiperDateBlock />
+        <SwiperDateBlock status="select" />
       </div>
 
       <div className="btn-container">

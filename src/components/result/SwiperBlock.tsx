@@ -30,9 +30,9 @@ const sampleDay = [
   { day: '수', date: '1/28', checked: 'false' },
 ];
 
-type SelectType = 'select' | 'result';
+type SelectStatus = 'select' | 'result';
 
-const SwiperBlock = ({ type }: { type: SelectType }) => {
+const SwiperBlock = ({ status }: { status: SelectStatus }) => {
   const [num, setNum] = useState(0);
   const count = useRef<number>(0);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -158,9 +158,14 @@ const SwiperBlock = ({ type }: { type: SelectType }) => {
           {sampleDay.map((day) => (
             <div key={day.date} className="swiper-block">
               <div className="swiper-day-block">{day.day}</div>
-              <SwiperDate date={day.date} type={day.checked} />
-              {type === 'select' ? (
-                <div className="check-container">
+              <SwiperDate date={day.date} type={day.checked} status="select" />
+              {status === 'select' ? (
+                <div
+                  className="check-container"
+                  style={
+                    day.checked === 'false' ? { display: 'none' } : undefined
+                  }
+                >
                   <img src={gray_check} alt="not-checked" />
                 </div>
               ) : null}

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import SwiperDate from './SwiperDate';
 
 const dateSwiperMax = 3;
@@ -13,7 +13,9 @@ const sample = timeArr.map((time) => {
   return { time, checked: sampleType[Math.floor(Math.random() * 3)] };
 });
 
-const SwiperDateBlock = () => {
+type SelectStatus = 'select' | 'result';
+
+const SwiperDateBlock = ({ status }: { status: SelectStatus }) => {
   const [num, setNum] = useState(0);
   const isMouseDown = useRef<boolean>(false);
 
@@ -48,35 +50,46 @@ const SwiperDateBlock = () => {
 
   return (
     <StyledWrapper ref={swiperTimeRef}>
-      <div className="img-box">
-        {num < dateSwiperMax * visibleSwiper * tranlatePixel && (
-          <img
-            onClick={handleClickLeft}
-            className="swiper_arrow left"
-            src="/img/result/swiper_arrow.png"
-            alt="arrow"
-          />
-        )}
+      <div className="join-button-container">
+        <button>모두 참여 불가</button>
+        <button>모두 참여 가능</button>
       </div>
-      <div className="swiper-container">
-        <div className="swiper-container_small" ref={carouselRef}>
-          {sample.map((day) => (
-            <div key={day.time} className="swiper-block">
-              <div className="swiper-date-block">{day.time}</div>
-              <SwiperDate type={day.checked} />
-            </div>
-          ))}
+
+      <div className="select-container">
+        <div className="img-box">
+          {num < dateSwiperMax * visibleSwiper * tranlatePixel && (
+            <img
+              onClick={handleClickLeft}
+              className="swiper_arrow left"
+              src="/img/result/swiper_arrow.png"
+              alt="arrow"
+            />
+          )}
+        </div>
+        <div className="swiper-container">
+          <div className="swiper-container_small" ref={carouselRef}>
+            {sample.map((day) => (
+              <div key={day.time} className="swiper-block">
+                <div className="swiper-date-block">{day.time}</div>
+                <SwiperDate type={day.checked} status="result" />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="img-box">
+          {num > -dateSwiperMax * visibleSwiper * tranlatePixel && (
+            <img
+              onClick={handleClickRight}
+              className="swiper_arrow right"
+              src="/img/result/swiper_arrow.png"
+              alt="arrow"
+            />
+          )}
         </div>
       </div>
-      <div className="img-box">
-        {num > -dateSwiperMax * visibleSwiper * tranlatePixel && (
-          <img
-            onClick={handleClickRight}
-            className="swiper_arrow right"
-            src="/img/result/swiper_arrow.png"
-            alt="arrow"
-          />
-        )}
+
+      <div className="next-button-container">
+        <button>다음</button>
       </div>
     </StyledWrapper>
   );
@@ -84,16 +97,26 @@ const SwiperDateBlock = () => {
 
 export default SwiperDateBlock;
 
-const StyledWrapper = styled.div`
-  position: relative;
-  border: 1px solid rgba(112,112,112,0.26);
-  max-width: 1200px;
-  height:196px;
-  padding: 24px 0px;
+const centerAlign = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  .swiper-container {
+`;
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(112,112,112,0.26);
+  .join-button-container {
+    ${centerAlign}
+  }
+  .select-container {
+    position: relative;
+    max-width: 1200px;
+    height:196px;
+    padding: 24px 0px;
+    ${centerAlign}
+    .swiper-container {
     max-width: 940px;
     overflow: hidden;
     display:flex;
@@ -138,7 +161,15 @@ const StyledWrapper = styled.div`
       right: 0;
       transform: rotate(0.5turn);
     }
-  }}
+  }
+  }
+  .next-button-container {
+    height: 
+    ${centerAlign};
+  }
+  
+  
+}
   @media screen and (max-width: 1440px) {
     .swiper-container {
       width: 690px;

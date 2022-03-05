@@ -14,12 +14,12 @@ const PreResult = () => {
       <div className="day container">
         <p className="title">요일</p>
         <div className="container_line" />
-        <SwiperBlock type="result" />
+        <SwiperBlock status="result" />
       </div>
       <div className="time container">
         <p className="time title">시간</p>
         <div className="container_line" />
-        <SwiperDateBlock />
+        <SwiperDateBlock status="result" />
       </div>
       <div className="people container">
         <p className="title">가능 인원</p>

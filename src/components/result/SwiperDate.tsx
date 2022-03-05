@@ -1,9 +1,20 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-const SwiperDate = ({ date, type }: { date?: string; type: string }) => {
-  const handleClick = () => {
-    console.log('hi');
+type SwiperProps = {
+  date?: string;
+  type: string;
+  status: string;
+};
+
+const SwiperDate = ({ date, type, status }: SwiperProps) => {
+  const handleClick = (e) => {
+    if (status === 'select') {
+      console.log('select');
+    } else {
+      e.preventDefault();
+      console.log('result');
+    }
   };
   return (
     <StyledWrapper type={type}>
