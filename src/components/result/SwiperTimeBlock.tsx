@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { getClientX, getTranslateX } from './module/StyleCal';
 import SwiperDate from './SwiperDate';
 
 const dateSwiperMax = 3;
 const visibleSwiper = 3;
 const tranlatePixel = 116;
+
+const slide = visibleSwiper * tranlatePixel;
 
 const timeArr = Array.from({ length: 24 }, (v, i) => i + 1);
 const sampleType = ['false', 'true', 'pending'];
@@ -15,10 +18,14 @@ const sample = timeArr.map((time) => {
 
 const SwiperTimeBlock = () => {
   const [num, setNum] = useState(0);
-  const isMouseDown = useRef<boolean>(false);
+  const count = useRef<number>(0);
 
   const carouselRef = useRef<HTMLDivElement>(null);
   const swiperTimeRef = useRef<HTMLDivElement>(null);
+
+  let startX = 0;
+  let nowX = 0;
+  let listX = 0;
 
   const handleClickRight = (event: React.MouseEvent<HTMLImageElement>) => {
     if (num <= -dateSwiperMax * visibleSwiper * tranlatePixel) return;
@@ -32,6 +39,62 @@ const SwiperTimeBlock = () => {
     return;
   };
 
+  const middleCarousel = () => {
+    if (swiperTimeRef.current && carouselRef.current) {
+      count.current = Math.floor(
+        swiperTimeRef.current?.clientWidth / tranlatePixel
+      );
+
+      swiperTimeRef.current.scrollLeft =
+        tranlatePixel * Math.floor((24 - count.current) / 2);
+    }
+  };
+
+  const onScrollStart = (e) => {
+    startX = getClientX(e);
+    nowX = getClientX(e);
+    carouselRef.current?.addEventListener('mousemove', onScrollMove);
+    carouselRef.current?.addEventListener('touchmove', onScrollMove);
+    carouselRef.current?.addEventListener('mouseup', onScrollEnd);
+    carouselRef.current?.addEventListener('mouseleave', onScrollEnd);
+    carouselRef.current?.addEventListener('touchend', onScrollEnd);
+  };
+
+  const onScrollMove = (e) => {
+    e.preventDefault();
+    nowX = getClientX(e);
+  };
+
+  const onScrollEnd = (e) => {
+    listX = getTranslateX(carouselRef);
+    if (swiperTimeRef.current && carouselRef.current) {
+      count.current = Math.floor(
+        swiperTimeRef.current?.clientWidth / tranlatePixel
+      );
+    }
+
+    const dateSwiperMax = (24 - count.current) / 2 / 3;
+    if (listX < dateSwiperMax * slide && nowX > startX) {
+      setNum((num) => num + visibleSwiper * tranlatePixel);
+    }
+    if (listX > -dateSwiperMax * slide && nowX < startX) {
+      setNum((num) => num - visibleSwiper * tranlatePixel);
+    }
+    carouselRef.current?.removeEventListener('mousedown', onScrollStart);
+    carouselRef.current?.removeEventListener('touchstart', onScrollStart);
+    carouselRef.current?.removeEventListener('mousemove', onScrollMove);
+    carouselRef.current?.removeEventListener('touchmove', onScrollMove);
+    carouselRef.current?.removeEventListener('touchend', onScrollEnd);
+    carouselRef.current?.removeEventListener('mouseup', onScrollEnd);
+    carouselRef.current?.removeEventListener('mouseleave', onScrollEnd);
+
+    setTimeout(() => {
+      carouselRef.current?.addEventListener('mousedown', onScrollStart);
+      carouselRef.current?.addEventListener('touchstart', onScrollStart);
+      if (carouselRef.current) carouselRef.current.style.transition = '';
+    }, 300);
+  };
+
   useEffect(() => {
     if (carouselRef.current) {
       carouselRef.current.style.transform = `translateX(${num}px)`;
@@ -39,14 +102,16 @@ const SwiperTimeBlock = () => {
   }, [num]);
 
   useEffect(() => {
-    const swiperTimeRefCurrent = swiperTimeRef.current;
-    if (swiperTimeRefCurrent) {
-      swiperTimeRefCurrent.scrollLeft = tranlatePixel * 8;
-    }
-    swiperTimeRefCurrent?.addEventListener('mousedown', () => {
-      isMouseDown.current = true;
-      console.log('mouseDown');
-    });
+    const carouselCurrent = carouselRef.current;
+    middleCarousel();
+    window.addEventListener('resize', middleCarousel);
+    carouselRef.current?.addEventListener('mousedown', onScrollStart);
+    carouselRef.current?.addEventListener('touchstart', onScrollStart);
+    return () => {
+      window.removeEventListener('resize', middleCarousel);
+      carouselCurrent?.removeEventListener('mousedown', onScrollStart);
+      carouselCurrent?.removeEventListener('touchstart', onScrollStart);
+    };
   }, []);
 
   return (
@@ -101,7 +166,7 @@ const StyledWrapper = styled.div`
     overflow: hidden;
     display:flex;
     .swiper-container_small {
-      transition:transform 1s;
+      transition:transform 0.3s;
       display:flex;
       min-width: auto;
       .swiper-block {
