@@ -1,31 +1,16 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PageTitleBar from '../../components/PageTitleBar';
-import {
-  pencil,
-  people_plus,
-  clock,
-  location_pin,
-} from '../../assets/NewSchedule/index';
-import ResultBlock from '../../components/result/ResultBlock';
 import SwiperBlock from '../../components/result/SwiperBlock';
 import SwiperDateBlock from '../../components/result/SwiperDateBlock';
 import ResultPeople from '../../components/result/ResultPeople';
+import ScheduleHostContainer from '../../components/result/common/ScheduleHostContainer';
 
 const PreResult = () => {
   return (
     <StyledWrapper>
       <PageTitleBar title={'결과'} />
-      <div className="result-container">
-        <ResultBlock img={pencil} altName="일정명" value="프로젝트 회의" />
-        <ResultBlock
-          img={location_pin}
-          altName="장소명"
-          value="왕십리역 6번 출구"
-        />
-        <ResultBlock img={clock} altName="시간" value="1시간" />
-        <ResultBlock img={people_plus} altName="사람 수" value="5명" />
-      </div>
+      <ScheduleHostContainer />
       <div className="day container">
         <p className="title">요일</p>
         <div className="container_line" />

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import SwiperDate from './SwiperDate';
 
 const visibleSwiper = 3;
-const tranlatePixel = 116;
+const translatePixel = 116;
 
-const slide = visibleSwiper * tranlatePixel;
+const slide = visibleSwiper * translatePixel;
 
 const sampleDay = [
   { day: '토', date: '1/10', checked: 'pending' },
@@ -71,15 +71,15 @@ const SwiperBlock = () => {
     listX = getTranslateX();
     if (swiperRef.current && carouselRef.current) {
       count.current = Math.floor(
-        swiperRef.current?.clientWidth / tranlatePixel
+        swiperRef.current?.clientWidth / translatePixel
       );
     }
     const dateSwiperMax = (arrCnt - count.current) / 2 / 3;
     if (listX < dateSwiperMax * slide && nowX > startX) {
-      setNum((num) => num + visibleSwiper * tranlatePixel);
+      setNum((num) => num + visibleSwiper * translatePixel);
     }
     if (listX > -dateSwiperMax * slide && nowX < startX) {
-      setNum((num) => num - visibleSwiper * tranlatePixel);
+      setNum((num) => num - visibleSwiper * translatePixel);
     }
     carouselRef.current?.removeEventListener('mousedown', onScrollStart);
     carouselRef.current?.removeEventListener('touchstart', onScrollStart);
@@ -103,24 +103,24 @@ const SwiperBlock = () => {
   };
 
   const handleClickRight = (event: React.MouseEvent<HTMLImageElement>) => {
-    if (num <= -dateSwiperMax * visibleSwiper * tranlatePixel) return;
-    setNum((num) => num - visibleSwiper * tranlatePixel);
+    if (num <= -dateSwiperMax * visibleSwiper * translatePixel) return;
+    setNum((num) => num - visibleSwiper * translatePixel);
     return;
   };
 
   const handleClickLeft = (event: React.MouseEvent<HTMLImageElement>) => {
-    if (num >= dateSwiperMax * visibleSwiper * tranlatePixel) return;
-    setNum((num) => num + visibleSwiper * tranlatePixel);
+    if (num >= dateSwiperMax * visibleSwiper * translatePixel) return;
+    setNum((num) => num + visibleSwiper * translatePixel);
     return;
   };
 
   const middleCarousel = () => {
     if (swiperRef.current && carouselRef.current) {
       count.current = Math.floor(
-        swiperRef.current?.clientWidth / tranlatePixel
+        swiperRef.current?.clientWidth / translatePixel
       );
       swiperRef.current.scrollLeft =
-        tranlatePixel * Math.floor((arrCnt - count.current) / 2);
+        translatePixel * Math.floor((arrCnt - count.current) / 2);
     }
   };
 
@@ -141,7 +141,7 @@ const SwiperBlock = () => {
   return (
     <StyledWrapper>
       <div className="img-box">
-        {num < dateSwiperMax * visibleSwiper * tranlatePixel && (
+        {num < dateSwiperMax * visibleSwiper * translatePixel && (
           <img
             onClick={handleClickLeft}
             className="swiper_arrow left"
@@ -161,7 +161,7 @@ const SwiperBlock = () => {
         </div>
       </div>
       <div className="img-box">
-        {num > -dateSwiperMax * visibleSwiper * tranlatePixel && (
+        {num > -dateSwiperMax * visibleSwiper * translatePixel && (
           <img
             onClick={handleClickRight}
             className="swiper_arrow right"
