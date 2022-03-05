@@ -63,25 +63,22 @@ const SwiperBlock = () => {
     carouselRef.current?.addEventListener('touchend', onScrollEnd);
   };
   const onScrollMove = (e) => {
-    listX = getTranslateX();
     e.preventDefault();
     nowX = getClientX(e);
-    if (getTranslateX() <= -dateSwiperMax * slide && nowX < startX) return;
-    if (getTranslateX() >= dateSwiperMax * slide && nowX > startX) return;
-    // setNum(listX + nowX - startX);
-    // const count = Math.round(Math.abs(nowX - startX) / tranlatePixel);
-    if (nowX > startX) {
-      setNum((num) => num + visibleSwiper * tranlatePixel);
-    } else if (nowX < startX) {
-      setNum((num) => num - visibleSwiper * tranlatePixel);
-    }
   };
 
   const onScrollEnd = (e) => {
     listX = getTranslateX();
-    if (nowX > startX) {
+    if (swiperRef.current && carouselRef.current) {
+      count.current = Math.floor(
+        swiperRef.current?.clientWidth / tranlatePixel
+      );
+    }
+    const dateSwiperMax = (arrCnt - count.current) / 2 / 3;
+    if (listX < dateSwiperMax * slide && nowX > startX) {
       setNum((num) => num + visibleSwiper * tranlatePixel);
-    } else if (nowX < startX) {
+    }
+    if (listX > -dateSwiperMax * slide && nowX < startX) {
       setNum((num) => num - visibleSwiper * tranlatePixel);
     }
     carouselRef.current?.removeEventListener('mousedown', onScrollStart);
