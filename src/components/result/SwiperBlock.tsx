@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { getClientX, getTranslateX } from './module/StyleCal';
 import SwiperDate from './SwiperDate';
 
 const visibleSwiper = 3;
@@ -32,27 +33,15 @@ const sampleDay = [
 const SwiperBlock = () => {
   const [num, setNum] = useState(0);
   const count = useRef<number>(0);
+  const [dateSwiperMax, setDateSwiperMax] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const swiperRef = useRef<HTMLDivElement>(null);
 
   const arrCnt = sampleDay.length;
-  const dateSwiperMax = (arrCnt - count.current) / 2 / 3;
+
   let startX = 0;
   let nowX = 0;
   let listX = 0;
-
-  const getClientX = (e) => {
-    const isTouches = e.touches ? true : false;
-    return isTouches ? e.touches[0].clientX : e.clientX;
-  };
-
-  const getTranslateX = () => {
-    return parseInt(
-      getComputedStyle(carouselRef.current as Element).transform.split(
-        /[^\-0-9]+/g
-      )[5]
-    );
-  };
 
   const onScrollStart = (e) => {
     startX = getClientX(e);
@@ -69,7 +58,7 @@ const SwiperBlock = () => {
   };
 
   const onScrollEnd = (e) => {
-    listX = getTranslateX();
+    listX = getTranslateX(carouselRef);
     if (swiperRef.current && carouselRef.current) {
       count.current = Math.floor(
         swiperRef.current?.clientWidth / tranlatePixel
@@ -90,18 +79,12 @@ const SwiperBlock = () => {
     carouselRef.current?.removeEventListener('touchend', onScrollEnd);
     carouselRef.current?.removeEventListener('mouseup', onScrollEnd);
     carouselRef.current?.removeEventListener('mouseleave', onScrollEnd);
-    carouselRef.current?.removeEventListener('click', onClick);
 
     setTimeout(() => {
       carouselRef.current?.addEventListener('mousedown', onScrollStart);
       carouselRef.current?.addEventListener('touchstart', onScrollStart);
-      carouselRef.current?.addEventListener('click', onClick);
       if (carouselRef.current) carouselRef.current.style.transition = '';
     }, 300);
-  };
-
-  const onClick = (e) => {
-    e.preventDefault();
   };
 
   const handleClickRight = (event: React.MouseEvent<HTMLImageElement>) => {
@@ -121,6 +104,9 @@ const SwiperBlock = () => {
       count.current = Math.floor(
         swiperRef.current?.clientWidth / tranlatePixel
       );
+      arrCnt <= count.current
+        ? setDateSwiperMax(0)
+        : setDateSwiperMax((arrCnt - count.current) / 2 / 3);
       swiperRef.current.scrollLeft =
         tranlatePixel * Math.floor((arrCnt - count.current) / 2);
     }
@@ -133,11 +119,16 @@ const SwiperBlock = () => {
   }, [num]);
 
   useEffect(() => {
+    const carouselCurrent = carouselRef.current;
     middleCarousel();
     window.addEventListener('resize', middleCarousel);
     carouselRef.current?.addEventListener('mousedown', onScrollStart);
     carouselRef.current?.addEventListener('touchstart', onScrollStart);
-    carouselRef.current?.addEventListener('click', onClick);
+    return () => {
+      window.removeEventListener('resize', middleCarousel);
+      carouselCurrent?.removeEventListener('mousedown', onScrollStart);
+      carouselCurrent?.removeEventListener('touchstart', onScrollStart);
+    };
   }, []);
 
   return (
