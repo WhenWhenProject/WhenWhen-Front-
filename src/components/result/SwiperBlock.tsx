@@ -56,6 +56,7 @@ const SwiperBlock = () => {
 
   const onScrollStart = (e) => {
     startX = getClientX(e);
+    nowX = getClientX(e);
     carouselRef.current?.addEventListener('mousemove', onScrollMove);
     carouselRef.current?.addEventListener('touchmove', onScrollMove);
     carouselRef.current?.addEventListener('mouseup', onScrollEnd);
@@ -74,6 +75,7 @@ const SwiperBlock = () => {
         swiperRef.current?.clientWidth / tranlatePixel
       );
     }
+
     const dateSwiperMax = (arrCnt - count.current) / 2 / 3;
     if (listX < dateSwiperMax * slide && nowX > startX) {
       setNum((num) => num + visibleSwiper * tranlatePixel);

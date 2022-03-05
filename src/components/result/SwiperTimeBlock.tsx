@@ -13,7 +13,7 @@ const sample = timeArr.map((time) => {
   return { time, checked: sampleType[Math.floor(Math.random() * 3)] };
 });
 
-const SwiperDateBlock = () => {
+const SwiperTimeBlock = () => {
   const [num, setNum] = useState(0);
   const isMouseDown = useRef<boolean>(false);
 
@@ -40,6 +40,9 @@ const SwiperDateBlock = () => {
 
   useEffect(() => {
     const swiperTimeRefCurrent = swiperTimeRef.current;
+    if (swiperTimeRefCurrent) {
+      swiperTimeRefCurrent.scrollLeft = tranlatePixel * 8;
+    }
     swiperTimeRefCurrent?.addEventListener('mousedown', () => {
       isMouseDown.current = true;
       console.log('mouseDown');
@@ -47,7 +50,7 @@ const SwiperDateBlock = () => {
   }, []);
 
   return (
-    <StyledWrapper ref={swiperTimeRef}>
+    <StyledWrapper>
       <div className="img-box">
         {num < dateSwiperMax * visibleSwiper * tranlatePixel && (
           <img
@@ -58,7 +61,7 @@ const SwiperDateBlock = () => {
           />
         )}
       </div>
-      <div className="swiper-container">
+      <div className="swiper-container" ref={swiperTimeRef}>
         <div className="swiper-container_small" ref={carouselRef}>
           {sample.map((day) => (
             <div key={day.time} className="swiper-block">
@@ -82,7 +85,7 @@ const SwiperDateBlock = () => {
   );
 };
 
-export default SwiperDateBlock;
+export default SwiperTimeBlock;
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -94,26 +97,23 @@ const StyledWrapper = styled.div`
   justify-content: center;
   align-items: center;
   .swiper-container {
-    max-width: 940px;
+    max-width: 928px;
     overflow: hidden;
     display:flex;
-    justify-content: center;
     .swiper-container_small {
       transition:transform 1s;
       display:flex;
       min-width: auto;
       .swiper-block {
-          position: relative;
-        :first-child{
-          margin-left:20px;
-        }
-        margin-right: 20px;
+        width:116px;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-end;
         .swiper-date-block {
-          width: 96px;
+          width: 100%;
           background-color: #ffffff;
           display: flex;
           align-items: center;
-          /* position: absolute; */
           color: #000070;
           font-size: 24px;
         }

@@ -9,7 +9,7 @@ import {
 } from '../../assets/NewSchedule/index';
 import ResultBlock from '../../components/result/ResultBlock';
 import SwiperBlock from '../../components/result/SwiperBlock';
-import SwiperDateBlock from '../../components/result/SwiperDateBlock';
+import SwiperTimeBlock from '../../components/result/SwiperTimeBlock';
 import ResultPeople from '../../components/result/ResultPeople';
 
 const PreResult = () => {
@@ -34,7 +34,7 @@ const PreResult = () => {
       <div className="time container">
         <p className="time title">시간</p>
         <div className="container_line" />
-        <SwiperDateBlock />
+        <SwiperTimeBlock />
       </div>
       <div className="people container">
         <p className="title">가능 인원</p>
