@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PageTitleBar from '../../components/PageTitleBar';
+import DateSelectBlock from '../../components/result/common/DateSelectBlock';
 import ScheduleHostContainer from '../../components/result/common/ScheduleHostContainer';
-import SwiperBlock from '../../components/result/SwiperBlock';
-import SwiperTimeBlock from '../../components/result/SwiperTimeBlock';
+import TimeSelectBlock from '../../components/result/common/TimeSelectBlock';
 
 // 생성된 일정에 개개인의 일정을 기입하는 페이지
 const ScheduleForm = () => {
@@ -11,16 +11,8 @@ const ScheduleForm = () => {
     <StyledWrapper>
       <PageTitleBar title={'나의 일정'} />
       <ScheduleHostContainer />
-      <div className="day container">
-        <p className="title">요일</p>
-        <div className="container_line" />
-        <SwiperBlock status="select" />
-      </div>
-      <div className="time container">
-        <p className="time title">시간</p>
-        <div className="container_line" />
-        <SwiperTimeBlock status="select" />
-      </div>
+      <DateSelectBlock status="select" />
+      <TimeSelectBlock status="select" />
 
       <div className="btn-container">
         <button className="btn-container__button--cancel">취소하기</button>
@@ -44,15 +36,6 @@ const StyledWrapper = styled.div`
   ${centerAlign}
   flex-direction: column;
   margin-bottom: 62px;
-  .container {
-    color: #000070;
-    width: 100%;
-    margin-bottom: 48px;
-    .title {
-      font-size: 32px;
-      margin-bottom: 0;
-    }
-  }
   .btn-container {
     button {
       cursor: pointer;
@@ -70,10 +53,5 @@ const StyledWrapper = styled.div`
     .btn-container__button--submit {
       background-color: #000070;
     }
-  }
-  .container_line {
-    border: 4px solid #000070;
-    margin-bottom: 24px;
-    max-width: 1200px;
   }
 `;

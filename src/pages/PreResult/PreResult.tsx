@@ -5,22 +5,16 @@ import SwiperBlock from '../../components/result/SwiperBlock';
 import SwiperTimeBlock from '../../components/result/SwiperTimeBlock';
 import ResultPeople from '../../components/result/ResultPeople';
 import ScheduleHostContainer from '../../components/result/common/ScheduleHostContainer';
+import DateSelectBlock from '../../components/result/common/DateSelectBlock';
+import TimeSelectBlock from '../../components/result/common/TimeSelectBlock';
 
 const PreResult = () => {
   return (
     <StyledWrapper>
       <PageTitleBar title={'결과'} />
       <ScheduleHostContainer />
-      <div className="day container">
-        <p className="title">요일</p>
-        <div className="container_line" />
-        <SwiperBlock status="result" />
-      </div>
-      <div className="time container">
-        <p className="time title">시간</p>
-        <div className="container_line" />
-        <SwiperTimeBlock status="result" />
-      </div>
+      <DateSelectBlock status="result" />
+      <TimeSelectBlock status="result" />
       <div className="people container">
         <p className="title">가능 인원</p>
         <div className="container_line" />
