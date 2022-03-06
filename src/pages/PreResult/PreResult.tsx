@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PageTitleBar from '../../components/PageTitleBar';
 import SwiperBlock from '../../components/result/SwiperBlock';
-import SwiperDateBlock from '../../components/result/SwiperDateBlock';
+import SwiperTimeBlock from '../../components/result/SwiperTimeBlock';
 import ResultPeople from '../../components/result/ResultPeople';
 import ScheduleHostContainer from '../../components/result/common/ScheduleHostContainer';
 
@@ -19,7 +19,7 @@ const PreResult = () => {
       <div className="time container">
         <p className="time title">시간</p>
         <div className="container_line" />
-        <SwiperDateBlock status="result" />
+        <SwiperTimeBlock status="result" />
       </div>
       <div className="people container">
         <p className="title">가능 인원</p>

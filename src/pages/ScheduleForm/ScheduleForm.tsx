@@ -3,8 +3,7 @@ import styled, { css } from 'styled-components';
 import PageTitleBar from '../../components/PageTitleBar';
 import ScheduleHostContainer from '../../components/result/common/ScheduleHostContainer';
 import SwiperBlock from '../../components/result/SwiperBlock';
-import SwiperDateBlock from '../../components/result/SwiperDateBlock';
-import ResultPeople from '../../components/result/ResultPeople';
+import SwiperTimeBlock from '../../components/result/SwiperTimeBlock';
 
 // 생성된 일정에 개개인의 일정을 기입하는 페이지
 const ScheduleForm = () => {
@@ -20,7 +19,7 @@ const ScheduleForm = () => {
       <div className="time container">
         <p className="time title">시간</p>
         <div className="container_line" />
-        <SwiperDateBlock status="select" />
+        <SwiperTimeBlock status="select" />
       </div>
 
       <div className="btn-container">
