@@ -4,6 +4,7 @@ import PageTitleBar from '../../components/PageTitleBar';
 import DateSelectBlock from '../../components/result/common/DateSelectBlock';
 import ScheduleHostContainer from '../../components/result/common/ScheduleHostContainer';
 import TimeSelectBlock from '../../components/result/common/TimeSelectBlock';
+import ResultGroupTitleBar from '../../components/result/ResultGroupTitleBar';
 
 // 모두가 적었으면 최종 결과 페이지, 한 명이라도 적지 않은 사람이 있으면 중간 결과 페이지
 const ScheduleResult = () => {
@@ -11,6 +12,8 @@ const ScheduleResult = () => {
     <StyledWrapper>
       <PageTitleBar title="결과" />
       <ScheduleHostContainer />
+      <ResultGroupTitleBar title="요약 결과" />
+      <ResultGroupTitleBar title="상세 결과" />
       <DateSelectBlock status="result" />
       <TimeSelectBlock status="result" />
     </StyledWrapper>
