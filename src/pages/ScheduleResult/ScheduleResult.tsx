@@ -16,8 +16,10 @@ const ScheduleResult = () => {
       <ResultGroupTitleBar title="요약 결과" />
       <ResultSummaryContainer />
       <ResultGroupTitleBar title="상세 결과" />
-      <DateSelectBlock status="result" />
-      <TimeSelectBlock status="result" />
+      <div className="block-wrapper">
+        <DateSelectBlock status="result" />
+        <TimeSelectBlock status="result" />
+      </div>
     </StyledWrapper>
   );
 };
@@ -36,4 +38,7 @@ const StyledWrapper = styled.div`
   ${centerAlign}
   flex-direction: column;
   margin-bottom: 62px;
+  .block-wrapper {
+    width: 100%;
+  }
 `;
