@@ -1,22 +1,20 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useGetUser } from "../../hooks/sign/useGetUser";
-import { logoutCheck } from "../../modules/store/Login";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useGetUser } from '../../hooks/sign/useGetUser';
 
 export default function LogoutBtn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem('access_token');
   const getUser = useGetUser(token);
 
   const logoutRedirect = () => {
-    dispatch(logoutCheck());
-    navigate("/");
+    navigate('/');
   };
 
   const handleClickLogout = async () => {
-    const social = localStorage.getItem("social");
+    const social = localStorage.getItem('social');
     try {
       if (!getUser.isLogin) return;
       switch (social) {

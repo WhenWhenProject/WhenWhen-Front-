@@ -4,12 +4,8 @@ import App from './pages/App';
 import GlobalStyle from './styles/globalStyle';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from './modules/store';
 import theme from './styles/theme';
-import { composeWithDevTools } from 'redux-devtools-extension';
-
-const store = createStore(rootReducer, composeWithDevTools());
+import { store } from './modules/store';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
