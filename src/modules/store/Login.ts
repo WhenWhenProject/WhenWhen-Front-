@@ -1,18 +1,26 @@
-const LOGINCHECK = 'logincheck';
-const LOGOUTCHECK = 'logoutcheck';
+import { createSlice } from '@reduxjs/toolkit';
 
-export const loginCheck = () => ({ type: LOGINCHECK });
-export const logoutCheck = () => ({ type: LOGOUTCHECK });
-
-const initialState = { isLogin: false };
-
-export const login = (state = initialState, action) => {
-  switch (action.type) {
-    case LOGINCHECK:
-      return { ...state, isLogin: true };
-    case LOGOUTCHECK:
-      return { ...state, isLogin: false };
-    default:
-      return state;
-  }
+export type LoginType = {
+  login: boolean;
 };
+
+const initialState: LoginType = {
+  login: false,
+};
+
+export const LoginSlice = createSlice({
+  name: 'login',
+  initialState,
+  reducers: {
+    updateLogin: (state) => {
+      state.login = true;
+    },
+    updateLogout: (state) => {
+      state.login = false;
+    },
+  },
+});
+
+export const { updateLogin, updateLogout } = LoginSlice.actions;
+
+export default LoginSlice.reducer;
