@@ -1,20 +1,26 @@
-import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
-import handleLogin from '../../modules/api/handleLogin';
+import api from '../../modules/api/api';
+import { API_LOGIN } from '../../modules/api/keyFactory';
+
+const id = 'user123';
+const pw = '1234';
 
 const GoogleLoginBtn = () => {
   const handleLogin = async () => {
-    const res = axios.get(
-      'http://ec2-13-125-111-105.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google'
-    );
+    const res = await api.POST({
+      url: API_LOGIN,
+      data: {
+        username: id,
+        password: pw,
+      },
+    });
     console.log(res);
-    return res;
   };
   return (
     <StyledBtn onClick={handleLogin}>
       <img className="login-img" src="/img/Google.png" alt="google" />
-      <div className="login-text">구글로 로그인</div>
+      <div className="login-text">로그인하기</div>
     </StyledBtn>
   );
 };

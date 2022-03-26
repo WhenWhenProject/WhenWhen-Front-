@@ -11,6 +11,7 @@ import NavigationBar from '../components/NavigationBar';
 import EventPage from './Event/EventPage';
 import EventComponent from '../components/event/EventComponent';
 import PreResult from './PreResult/PreResult';
+import Sign from './Sign/Sign';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path="event" element={<EventPage />}>
                 <Route path=":type" element={<EventComponent />}></Route>
               </Route>
+              <Route path="/oauth/redirect" element={<Sign />} />
             </>
           )}
           <Route path="*" element={<Page404 />} />

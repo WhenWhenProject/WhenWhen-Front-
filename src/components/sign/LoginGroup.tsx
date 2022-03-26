@@ -8,7 +8,7 @@ const LoginGroup = () => {
   return (
     <StyledWrapper>
       <GoogleLoginBtn />
-      <KakaoLoginBtn />
+      {/* <KakaoLoginBtn /> */}
       {/* <NaverLoginBtn /> */}
     </StyledWrapper>
   );
