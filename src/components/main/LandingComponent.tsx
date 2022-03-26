@@ -32,7 +32,7 @@ const LandingComponent = () => {
             <br /> 지인들과 일정을 잡으세요.
           </div>
         </div>
-        {login.isLogin ? (
+        {false ? (
           <button className="main-btn" onClick={handleSchedule}>
             일정 생성하기
           </button>

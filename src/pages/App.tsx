@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './Main/Main';
-import { useGetUser } from '../hooks/sign/useGetUser';
 import NewSchedule from './NewSchedule/NewSchedule';
 import MyPage from './MyPage/MyPage';
 import ScheduleForm from './ScheduleForm/ScheduleForm';
@@ -20,7 +19,7 @@ function App() {
         <NavigationBar />
         <Routes>
           <Route path="/" element={<Main />} />
-          {true && (
+          {false && (
             <>
               <Route path="schedule/new" element={<NewSchedule />} />
               <Route path="mypage" element={<MyPage />} />

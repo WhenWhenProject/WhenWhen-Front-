@@ -9,7 +9,7 @@ const LoginGroup = () => {
     <StyledWrapper>
       <GoogleLoginBtn />
       <KakaoLoginBtn />
-      <NaverLoginBtn />
+      {/* <NaverLoginBtn /> */}
     </StyledWrapper>
   );
 };
