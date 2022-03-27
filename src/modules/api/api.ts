@@ -11,12 +11,15 @@ class API {
 
   async CALL({ url = '', method, data = null }) {
     try {
+      const access = localStorage.getItem('accessToken') as string;
+      const refresh = localStorage.getItem('refreshToken') as string;
       const response = await axios({
         method,
         data,
         url: this.apiUrl + url,
         headers: {
-          access: localStorage.getItem('access') as string,
+          ...(access && { access }),
+          ...(refresh && { refresh }),
         },
       });
       return response;
