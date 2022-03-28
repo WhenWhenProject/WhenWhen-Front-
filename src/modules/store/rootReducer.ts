@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux';
-import LoginReducer from './Login';
-import { all } from 'redux-saga/effects';
+import { combineReducers } from "redux";
+import { all } from "redux-saga/effects";
+import { loginReducer, loginSaga } from "./Login";
 
-const rootReducer = combineReducers({
-  login: LoginReducer,
+export const rootReducer = combineReducers({
+  login: loginReducer,
 });
 
-export function* rootSage() {
-  yield all([]);
+export function* rootSaga() {
+  yield all([loginSaga()]);
 }

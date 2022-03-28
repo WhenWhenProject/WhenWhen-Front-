@@ -1,5 +1,5 @@
-import axios from 'axios';
-import envConfig from '../Envkey';
+import axios from "axios";
+import envConfig from "../Envkey";
 
 axios.defaults.withCredentials = true;
 class API {
@@ -9,10 +9,10 @@ class API {
     this.apiUrl = envConfig.apiUri as string;
   }
 
-  async CALL({ url = '', method, data = null }) {
+  async CALL({ url = "", method, data = null }) {
     try {
-      const access = localStorage.getItem('accessToken') as string;
-      const refresh = localStorage.getItem('refreshToken') as string;
+      const access = localStorage.getItem("accessToken") as string;
+      const refresh = localStorage.getItem("refreshToken") as string;
       const response = await axios({
         method,
         data,
@@ -29,21 +29,21 @@ class API {
   }
   GET(urlData) {
     return this.CALL({
-      method: 'GET',
+      method: "GET",
       url: urlData,
     });
   }
   POST(params) {
     return this.CALL({
       ...params,
-      method: 'POST',
+      method: "POST",
       url: params.url,
     });
   }
   PUT(params) {
     return this.CALL({
       ...params,
-      method: 'PUT',
+      method: "PUT",
       url: params.url,
     });
   }
@@ -51,7 +51,7 @@ class API {
   DELETE(params) {
     return this.CALL({
       ...params,
-      method: 'DELETE',
+      method: "DELETE",
       url: params.url,
     });
   }

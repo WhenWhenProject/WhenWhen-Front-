@@ -1,55 +1,64 @@
-import { call, put } from '@redux-saga/core/effects';
-import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import api from '../api/api';
-import { API_LOGIN } from '../api/keyFactory';
+import { call, put, takeEvery } from "@redux-saga/core/effects";
+import { createSlice } from "@reduxjs/toolkit";
+import { createImportSpecifier } from "typescript";
+import api from "../api/api";
+import { API_LOGIN } from "../api/keyFactory";
 
 export type LoginType = {
-  loginLoading: boolean;
+  loading: boolean;
   login: boolean;
   error: any;
 };
 
-export type LoginPayload = {
-  username: string;
-  password: string;
-};
+export type LoginPayload = { x; username: string; password: string };
 
 const initialState: LoginType = {
-  loginLoading: false,
+  loading: false,
   login: false,
   error: null,
 };
-
-const login = createAction('login/LOGIN');
 
 const loginUserAPI = (loginData: { username: string; password: string }) => {
   return api.POST({ url: API_LOGIN, loginData });
 };
 
-function* loginUser(
-  action: PayloadAction<{ username: string; password: string }>
-) {
+export function* getLoginSaga(action: {
+  payload: { username: string; password: string };
+}) {
+  console.log("saga");
+  const { getLoginSuccess, getLoginFailure } = loginAction;
+  const param = action.payload;
   try {
-    const result = yield call(loginUserAPI, action.payload);
-    yield put({ type: login });
-  } catch (error) {
-    console.error(error);
+    const response = yield call(loginUserAPI, param);
+    yield put(getLoginSuccess(response));
+  } catch (err) {
+    yield put(getLoginFailure(err));
   }
 }
 
+export function* loginSaga() {
+  const { getLogin } = loginAction;
+  yield takeEvery(getLogin, getLoginSaga);
+}
+
 export const LoginSlice = createSlice({
-  name: 'login',
+  name: "login",
   initialState,
   reducers: {
-    updateLogin: (state) => {
-      state.login = true;
+    getLogin: (state, action) => {
+      state.loading = true;
     },
-    updateLogout: (state) => {
-      state.login = false;
+    getLoginSuccess: (state, action) => {
+      state.loading = false;
+      state.login = action.payload;
+    },
+    getLoginFailure: (state, { payload: error }) => {
+      state.loading = false;
+      state.error = error;
     },
   },
 });
 
-export const { updateLogin, updateLogout } = LoginSlice.actions;
-
-export default LoginSlice.reducer;
+export const login = LoginSlice.name;
+export const loginReducer = LoginSlice.reducer;
+export const loginAction = LoginSlice.actions;

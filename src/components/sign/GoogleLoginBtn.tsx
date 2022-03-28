@@ -1,25 +1,22 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import api from '../../modules/api/api';
-import { API_LOGIN } from '../../modules/api/keyFactory';
+import React from "react";
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import api from "../../modules/api/api";
+import { API_LOGIN } from "../../modules/api/keyFactory";
+import { LoginSlice } from "../../modules/store/Login";
 
-const id = 'abc123';
-const pw = '1234';
+const id = "abc123";
+const pw = "1234";
 
 const GoogleLoginBtn = () => {
   const dispatch = useDispatch();
   const handleLogin = async () => {
-    const res = await api.POST({
+    // const { getLogin } = LoginSlice.actions;
+    const res = api.POST({
       url: API_LOGIN,
-      data: {
-        username: id,
-        password: pw,
-      },
+      data: { username: id, password: pw },
     });
-    const { accessToken, refreshToken } = res.data.data;
-    localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('refreshToken', refreshToken);
+    // dispatch(getLogin({ username: id, password: pw }));
   };
   return (
     <StyledBtn onClick={handleLogin}>

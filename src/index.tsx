@@ -1,11 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './pages/App';
-import GlobalStyle from './styles/globalStyle';
-import { ThemeProvider } from 'styled-components';
-import { Provider } from 'react-redux';
-import theme from './styles/theme';
-import { store } from './modules/store';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./pages/App";
+import GlobalStyle from "./styles/globalStyle";
+import { ThemeProvider } from "styled-components";
+import { Provider } from "react-redux";
+import theme from "./styles/theme";
+import { store, sagaMiddleware } from "./modules/store";
+import { rootSaga } from "./modules/store/rootReducer";
+
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -15,5 +18,5 @@ ReactDOM.render(
     </Provider>
   </ThemeProvider>,
 
-  document.getElementById('root')
+  document.getElementById("root")
 );
